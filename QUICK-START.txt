@@ -1,0 +1,110 @@
+QUICK START - DEPLOY TO COOLIFY
+================================
+
+STEP 1: PUSH TO GITHUB
+----------------------
+
+1. Create GitHub repository:
+   https://github.com/new
+   - Name: propertipro-landing
+   - Public/Private: Your choice
+   - DO NOT add README (we have one)
+
+2. Push to GitHub:
+   cd /Applications/MAMP/htdocs/prop/deploy-landing
+   
+   git remote add origin https://github.com/YOUR_USERNAME/propertipro-landing.git
+   git branch -M main
+   git push -u origin main
+
+
+STEP 2: DEPLOY TO COOLIFY
+-------------------------
+
+1. Login to Coolify dashboard:
+   https://your-coolify-domain.com
+
+2. Create new application:
+   - Click "New Application"
+   - Select "Git Repository"
+   - Repository: https://github.com/YOUR_USERNAME/propertipro-landing
+   - Branch: main
+   - Build Pack: Nixpacks (auto)
+   - Port: 80
+
+3. Deploy:
+   - Click "Deploy"
+   - Wait 2-3 minutes
+   - Done!
+
+
+STEP 3: SET DOMAIN (OPTIONAL)
+------------------------------
+
+1. In Coolify:
+   - Application → Configuration
+   - Domain: propertipro.yourdomain.com
+
+2. Update DNS:
+   - Add A record → VPS IP address
+
+3. SSL:
+   - Coolify auto-configures Let's Encrypt
+   - HTTPS enabled automatically
+
+
+RESULT
+------
+
+Your landing page live at:
+https://propertipro.yourdomain.com
+
+
+ALTERNATIVE: DOCKER HUB
+-----------------------
+
+1. Build & push:
+   docker build -t YOUR_USERNAME/propertipro-landing .
+   docker push YOUR_USERNAME/propertipro-landing
+
+2. Coolify:
+   - New Application
+   - Docker Image
+   - Image: YOUR_USERNAME/propertipro-landing
+
+
+TEST LOCAL
+----------
+
+Docker:
+  docker build -t propertipro-landing .
+  docker run -p 8080:80 propertipro-landing
+  → http://localhost:8080
+
+Serve (Node):
+  npx serve -s . -p 3000
+  → http://localhost:3000
+
+
+FILES
+-----
+
+Total: 16MB
+- index.html (30KB)
+- 12 screenshots (7.9MB)
+- Dockerfile + configs
+
+
+TIME
+----
+
+- Push to GitHub: 2 minutes
+- Coolify deploy: 3 minutes
+- Domain setup: 5 minutes
+- Total: 10 minutes
+
+
+NEED HELP?
+----------
+
+Check DEPLOYMENT.md for detailed guide.
