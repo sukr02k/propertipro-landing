@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PropertiPro - Property Management System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        /* HERO */
+        .hero {
+            background: linear-gradient(135deg, #1a3318 0%, #2d5a27 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(212, 168, 83, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero .tagline {
+            font-size: 1.5rem;
+            opacity: 0.95;
+            margin-bottom: 40px;
+        }
+
+        .hero .features-quick {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-bottom: 50px;
+        }
+
+        .hero .feature-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px 25px;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero .feature-item i {
+            margin-right: 8px;
+            color: #d4a853;
+        }
+
+        /* SECTIONS */
+        .section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: #2d5a27;
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 50px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* FEATURES GRID */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border: 1px solid #e0e0e0;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(45, 90, 39, 0.15);
+            border-color: #d4a853;
+        }
+
+        .feature-card .icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #2d5a27 0%, #3d7a37 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+        }
+
+        .feature-card .icon i {
+            font-size: 2rem;
+            color: white;
+        }
+
+        .feature-card h3 {
+            font-size: 1.4rem;
+            color: #2d5a27;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .feature-card p {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .feature-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-card ul li {
+            padding: 8px 0;
+            color: #555;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .feature-card ul li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #28a745;
+            font-weight: bold;
+        }
+
+        /* COMPARISON */
+        .comparison-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 80px 20px;
+        }
+
+        .comparison-table {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .comparison-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .comparison-table thead {
+            background: #2d5a27;
+            color: white;
+        }
+
+        .comparison-table th {
+            padding: 20px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .comparison-table th.highlight {
+            background: #d4a853;
+            color: #1a3318;
+        }
+
+        .comparison-table td {
+            padding: 15px 20px;
+            text-align: center;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .comparison-table td:first-child {
+            text-align: left;
+            font-weight: 500;
+        }
+
+        .comparison-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .check {
+            color: #28a745;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .cross {
+            color: #dc3545;
+            font-size: 1.5rem;
+            opacity: 0.5;
+        }
+
+        .comparison-table tbody tr:last-child {
+            background: #f0f7f0;
+            font-weight: 600;
+        }
+
+        /* TECH STACK */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            margin-top: 50px;
+        }
+
+        .tech-card {
+            background: white;
+            padding: 30px 20px;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid #e0e0e0;
+            transition: all 0.3s ease;
+        }
+
+        .tech-card:hover {
+            border-color: #2d5a27;
+            transform: translateY(-3px);
+        }
+
+        .tech-card i {
+            font-size: 3rem;
+            color: #2d5a27;
+            margin-bottom: 15px;
+        }
+
+        .tech-card h4 {
+            color: #2d5a27;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        .tech-card p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .tech-card .badge {
+            display: inline-block;
+            background: #28a745;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 3px;
+            font-size: 0.75rem;
+            margin-top: 10px;
+            font-weight: 600;
+        }
+
+        /* BUDGET */
+        .budget-section {
+            background: white;
+        }
+
+        .budget-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 50px;
+            border: 2px solid #e0e0e0;
+        }
+
+        .budget-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .budget-table td {
+            padding: 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .budget-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .budget-table .item {
+            color: #555;
+        }
+
+        .budget-table .price {
+            text-align: right;
+            font-weight: 600;
+            color: #2d5a27;
+        }
+
+        .budget-table .total-row {
+            background: #2d5a27;
+        }
+
+        .budget-table .total-row td {
+            color: white;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        /* WHAT YOU GET */
+        .deliverables-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .deliverable-card {
+            background: white;
+            padding: 35px;
+            border-radius: 15px;
+            border: 2px solid #e0e0e0;
+            transition: all 0.3s ease;
+        }
+
+        .deliverable-card:hover {
+            border-color: #d4a853;
+        }
+
+        .deliverable-card h3 {
+            color: #2d5a27;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .deliverable-card h3 i {
+            margin-right: 10px;
+            color: #d4a853;
+        }
+
+        .deliverable-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .deliverable-card ul li {
+            padding: 10px 0;
+            border-bottom: 1px solid #e0e0e0;
+            color: #555;
+        }
+
+        .deliverable-card ul li:last-child {
+            border-bottom: none;
+        }
+
+        .deliverable-card ul li::before {
+            content: '→ ';
+            color: #d4a853;
+            font-weight: bold;
+        }
+
+        /* CTA */
+        .cta-section {
+            background: linear-gradient(135deg, #1a3318 0%, #2d5a27 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 18px 40px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .cta-btn.primary {
+            background: #d4a853;
+            color: #1a3318;
+        }
+
+        .cta-btn.primary:hover {
+            background: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .cta-btn.secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .cta-btn.secondary:hover {
+            background: white;
+            color: #2d5a27;
+        }
+
+        /* FOOTER */
+        .footer {
+            background: #1a3318;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .footer p {
+            margin: 5px 0;
+        }
+
+        .footer .highlight {
+            color: #d4a853;
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+
+        .footer .small {
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        /* MOCKUP SECTION */
+        .mockup-section {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        .mockup-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .mockup-item {
+            background: white;
+            border-radius: 15px;
+            padding: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            height: 280px;
+        }
+
+        .mockup-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(45, 90, 39, 0.2);
+        }
+
+        .mockup-label {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #2d5a27;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .mockup-desc {
+            color: #666;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+
+        .mockup-image {
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 2px solid #e0e0e0;
+            position: relative;
+            background: #f8f9fa;
+        }
+
+        .mockup-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top;
+        }
+
+        .mockup-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+        }
+
+        .mockup-placeholder i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            opacity: 0.3;
+        }
+
+        .mockup-placeholder p {
+            font-size: 0.85rem;
+            opacity: 0.7;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .tagline {
+                font-size: 1.2rem;
+            }
+
+            .hero .features-quick {
+                gap: 10px;
+            }
+
+            .hero .feature-item {
+                font-size: 0.85rem;
+                padding: 10px 15px;
+            }
+
+            .section {
+                padding: 60px 20px;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .budget-container {
+                padding: 30px 20px;
+            }
+
+            .cta-section h2 {
+                font-size: 2rem;
+            }
+
+            .cta-btn {
+                padding: 15px 30px;
+                font-size: 1rem;
+            }
+
+            .mockup-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .mockup-image {
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>PropertiPro</h1>
+            <p class="tagline">Property Management System untuk Bisnis Properti Anda</p>
+
+            <div class="features-quick">
+                <div class="feature-item">
+                    <i class="fas fa-home"></i> Property Management
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-door-open"></i> Unit System
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-map"></i> Interactive Map
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-images"></i> Gallery
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="section">
+        <h2 class="section-title">Fitur Unggulan</h2>
+        <p class="section-subtitle">Website properti profesional dengan fitur lengkap untuk mengelola bisnis property
+            Anda</p>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="icon">
+                    <i class="fas fa-home"></i>
+                </div>
+                <h3>Property Management</h3>
+                <p>Kelola semua properti dalam satu dashboard yang mudah digunakan</p>
+                <ul>
+                    <li>CRUD villa, kost, rumah, apartemen</li>
+                    <li>Upload multiple images</li>
+                    <li>Status management</li>
+                    <li>Property categorization</li>
+                </ul>
+            </div>
+
+            <div class="feature-card">
+                <div class="icon">
+                    <i class="fas fa-door-open"></i>
+                </div>
+                <h3>Unit/Residence System</h3>
+                <p>Sistem khusus untuk properti dengan multiple unit seperti kost dan apartemen</p>
+                <ul>
+                    <li>Multiple units per property</li>
+                    <li>Status badges (tersedia/terisi)</li>
+                    <li>Price range display</li>
+                    <li>Unit detail page</li>
+                </ul>
+            </div>
+
+            <div class="feature-card">
+                <div class="icon">
+                    <i class="fas fa-map-marked-alt"></i>
+                </div>
+                <h3>Interactive Map</h3>
+                <p>Tampilkan lokasi properti di peta interaktif tanpa biaya bulanan</p>
+                <ul>
+                    <li>Leaflet + OpenStreetMap</li>
+                    <li>Marker dengan popup</li>
+                    <li>Property location</li>
+                    <li>FREE - No API key</li>
+                </ul>
+            </div>
+
+            <div class="feature-card">
+                <div class="icon">
+                    <i class="fas fa-images"></i>
+                </div>
+                <h3>Gallery & Slider</h3>
+                <p>Tampilkan foto properti dengan gallery profesional dan hero slider</p>
+                <ul>
+                    <li>Multi-image per property</li>
+                    <li>Lightbox viewer</li>
+                    <li>Hero slider 5 slides</li>
+                    <li>Admin management</li>
+                </ul>
+            </div>
+
+            <div class="feature-card">
+                <div class="icon">
+                    <i class="fab fa-whatsapp"></i>
+                </div>
+                <h3>WhatsApp Integration</h3>
+                <p>Memudahkan calon customer menghubungi Anda langsung via WhatsApp</p>
+                <ul>
+                    <li>Floating button</li>
+                    <li>Booking links</li>
+                    <li>Auto message template</li>
+                    <li>Per property/unit</li>
+                </ul>
+            </div>
+
+            <div class="feature-card">
+                <div class="icon">
+                    <i class="fas fa-cogs"></i>
+                </div>
+                <h3>Admin Panel</h3>
+                <p>Dashboard lengkap untuk mengelola semua konten website</p>
+                <ul>
+                    <li>Full CRUD operations</li>
+                    <li>Inquiry management</li>
+                    <li>Testimonials</li>
+                    <li>Settings & Logo</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMPARISON -->
+    <section class="comparison-section">
+        <h2 class="section-title">Mengapa PropertiPro?</h2>
+        <p class="section-subtitle">Perbandingan fitur dengan website property standard</p>
+
+        <div class="comparison-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Fitur</th>
+                        <th class="highlight">PropertiPro<br><small>Rp 3.000.000</small></th>
+                        <th>Website Standard<br><small>~Rp 5.000.000+</small></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Property Management</td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td>Unit/Residence System</td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="cross">✗</span></td>
+                    </tr>
+                    <tr>
+                        <td>Interactive Map</td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="cross">✗</span></td>
+                    </tr>
+                    <tr>
+                        <td>Gallery per Property</td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="cross">✗</span></td>
+                    </tr>
+                    <tr>
+                        <td>Hero Slider</td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td>WhatsApp Integration</td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="cross">✗</span></td>
+                    </tr>
+                    <tr>
+                        <td>Logo Customization</td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="cross">✗</span></td>
+                    </tr>
+                    <tr>
+                        <td>Responsive Design</td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td>Dummy Data</td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="cross">✗</span></td>
+                    </tr>
+                    <tr>
+                        <td>Biaya Library</td>
+                        <td>GRATIS</td>
+                        <td>Berbayar</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- MOCKUP SHOWCASE -->
+    <section class="mockup-section">
+        <h2 class="section-title">Tampilan Website</h2>
+        <p class="section-subtitle">Screenshot dari sistem yang sudah berjalan</p>
+
+        <div class="mockup-grid">
+            <div class="mockup-item">
+                <div class="mockup-image">
+                    <img src="assets/images/mockups/screenshot-rocks.png" alt="Screenshot 1">
+                </div>
+            </div>
+
+            <div class="mockup-item">
+                <div class="mockup-image">
+                    <img src="assets/images/mockups/screenshot-rocks (1).png" alt="Screenshot 2">
+                </div>
+            </div>
+
+            <div class="mockup-item">
+                <div class="mockup-image">
+                    <img src="assets/images/mockups/screenshot-rocks (2).png" alt="Screenshot 3">
+                </div>
+            </div>
+
+            <div class="mockup-item">
+                <div class="mockup-image">
+                    <img src="assets/images/mockups/screenshot-rocks (3).png" alt="Screenshot 4">
+                </div>
+            </div>
+
+            <div class="mockup-item">
+                <div class="mockup-image">
+                    <img src="assets/images/mockups/screenshot-rocks (4).png" alt="Screenshot 5">
+                </div>
+            </div>
+
+            <div class="mockup-item">
+                <div class="mockup-image">
+                    <img src="assets/images/mockups/screenshot-rocks (5).png" alt="Screenshot 6">
+                </div>
+            </div>
+
+            <div class="mockup-item">
+                <div class="mockup-image">
+                    <img src="assets/images/mockups/screenshot-rocks (6).png" alt="Screenshot 7">
+                </div>
+            </div>
+
+            <div class="mockup-item">
+                <div class="mockup-image">
+                    <img src="assets/images/mockups/screenshot-rocks (7).png" alt="Screenshot 8">
+                </div>
+            </div>
+
+            <div class="mockup-item">
+                <div class="mockup-image">
+                    <img src="assets/images/mockups/screenshot-rocks (8).png" alt="Screenshot 9">
+                </div>
+            </div>
+
+            <div class="mockup-item">
+                <div class="mockup-image">
+                    <img src="assets/images/mockups/screenshot-rocks (9).png" alt="Screenshot 10">
+                </div>
+            </div>
+
+            <div class="mockup-item">
+                <div class="mockup-image">
+                    <img src="assets/images/mockups/screenshot-rocks (10).png" alt="Screenshot 11">
+                </div>
+            </div>
+
+            <div class="mockup-item">
+                <div class="mockup-image">
+                    <img src="assets/images/mockups/screenshot-rocks (11).png" alt="Screenshot 12">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TECH STACK -->
+    <section class="section">
+        <h2 class="section-title">Teknologi Modern</h2>
+        <p class="section-subtitle">Dibangun dengan teknologi terkini dan library GRATIS</p>
+
+        <div class="tech-grid">
+            <div class="tech-card">
+                <i class="fab fa-laravel"></i>
+                <h4>Laravel 10</h4>
+                <p>PHP Framework</p>
+            </div>
+            <div class="tech-card">
+                <i class="fab fa-bootstrap"></i>
+                <h4>Bootstrap 5</h4>
+                <p>UI Framework</p>
+            </div>
+            <div class="tech-card">
+                <i class="fas fa-database"></i>
+                <h4>MySQL</h4>
+                <p>Database</p>
+            </div>
+            <div class="tech-card">
+                <i class="fas fa-map"></i>
+                <h4>Leaflet</h4>
+                <p>Interactive Map</p>
+                <span class="badge">FREE</span>
+            </div>
+            <div class="tech-card">
+                <i class="fas fa-image"></i>
+                <h4>Owl Carousel</h4>
+                <p>Hero Slider</p>
+                <span class="badge">FREE</span>
+            </div>
+            <div class="tech-card">
+                <i class="fas fa-search-plus"></i>
+                <h4>Lightbox2</h4>
+                <p>Gallery Viewer</p>
+                <span class="badge">FREE</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHAT YOU GET -->
+    <section class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">Yang Anda Dapatkan</h2>
+        <p class="section-subtitle">Semua kebutuhan website properti dalam satu paket</p>
+
+        <div class="deliverables-grid">
+            <div class="deliverable-card">
+                <h3><i class="fas fa-code"></i> Source Code</h3>
+                <ul>
+                    <li>Complete Laravel project</li>
+                    <li>Admin panel dengan CRUD</li>
+                    <li>Responsive frontend</li>
+                    <li>Clean code structure</li>
+                </ul>
+            </div>
+
+            <div class="deliverable-card">
+                <h3><i class="fas fa-file-alt"></i> Documentation</h3>
+                <ul>
+                    <li>Installation guide</li>
+                    <li>Admin manual</li>
+                    <li>Feature documentation</li>
+                    <li>Deployment guide</li>
+                </ul>
+            </div>
+
+            <div class="deliverable-card">
+                <h3><i class="fas fa-headset"></i> Support</h3>
+                <ul>
+                    <li>Bug fixing (7 hari)</li>
+                    <li>Technical consultation</li>
+                    <li>Code explanation</li>
+                    <li>Deployment assistance</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- BUDGET -->
+    <section class="section budget-section">
+        <h2 class="section-title">Investasi</h2>
+        <p class="section-subtitle">Transparan dan sesuai budget Anda</p>
+
+        <div class="budget-container">
+            <table class="budget-table">
+                <tr>
+                    <td class="item">Frontend Pages</td>
+                    <td class="price">Rp 500.000</td>
+                </tr>
+                <tr>
+                    <td class="item">Backend Admin Panel</td>
+                    <td class="price">Rp 800.000</td>
+                </tr>
+                <tr>
+                    <td class="item">Database Design</td>
+                    <td class="price">Rp 300.000</td>
+                </tr>
+                <tr>
+                    <td class="item">Responsive Design</td>
+                    <td class="price">Rp 200.000</td>
+                </tr>
+                <tr>
+                    <td class="item">Hero Slider + Logo System</td>
+                    <td class="price">Rp 250.000</td>
+                </tr>
+                <tr>
+                    <td class="item">Unit Management System</td>
+                    <td class="price">Rp 250.000</td>
+                </tr>
+                <tr>
+                    <td class="item">Interactive Map Integration</td>
+                    <td class="price">Rp 200.000</td>
+                </tr>
+                <tr>
+                    <td class="item">Gallery System</td>
+                    <td class="price">Rp 200.000</td>
+                </tr>
+                <tr>
+                    <td class="item">WhatsApp Integration</td>
+                    <td class="price">Rp 150.000</td>
+                </tr>
+                <tr>
+                    <td class="item">Testing & Documentation</td>
+                    <td class="price">Rp 150.000</td>
+                </tr>
+                <tr class="total-row">
+                    <td>TOTAL INVESTASI</td>
+                    <td>Rp 3.000.000</td>
+                </tr>
+            </table>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <h2>Siap Memulai?</h2>
+        <p>Investasi sekali, gunakan selamanya. Tanpa biaya bulanan untuk library atau API.</p>
+
+        <div class="cta-buttons">
+            <a href="https://wa.me/6282214315115?text=Halo,%20saya%20tertarik%20dengan%20PropertiPro"
+                class="cta-btn primary" target="_blank">
+                <i class="fab fa-whatsapp"></i> Hubungi via WhatsApp
+            </a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p class="highlight">PropertiPro</p>
+        <p>Property Management System</p>
+        <p class="small">© 2026 - PH Group</p>
+    </footer>
+
+</body>
+
+</html>

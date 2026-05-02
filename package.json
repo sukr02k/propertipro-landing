@@ -1,0 +1,11 @@
+{
+  "name": "propertipro-landing",
+  "version": "1.0.0",
+  "description": "PropertiPro Landing Page",
+  "scripts": {
+    "start": "npx serve -s . -p 3000"
+  },
+  "keywords": ["landing-page", "property", "laravel"],
+  "author": "PH Group",
+  "license": "ISC"
+}
